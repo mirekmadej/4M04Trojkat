@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="_4M04Trojkat.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+
+            <Label
+                Text ="Trójkąt"
+                FontSize="40"
+                HorizontalOptions="Center"
+                />
+            <Entry
+                Placeholder="bok A"
+                x:Name =" entBokA"
+                />
+            <Entry
+                Placeholder="bok b"
+                x:Name="entBokB"
+                />
+            <Entry
+                Placeholder="bok c"
+                x:Name="entBokC"
+                />
+            <Button
+                Text="oblicz"
+                Clicked="btnCalcClicked"
+                />
+            <Label
+                Text="Pole: 0, obwód: o"
+                x:Name="lblPole"
+                />
+            <Label
+                Text="czy prostokątny: "
+                x:Name="lblProst"
+                />
+            <Label
+                Text="czy równoramienny: "
+                x:Name="lblRownoram"
+                />
+            <Label
+                Text="czy równoboczny: "
+                x:Name="lblRownBok"
+                />
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
