@@ -23,6 +23,7 @@
             entBokB.Placeholder = "bok B";
             entBokC.Placeholder = "bok C";
             typFigury = 0;
+            lblPole.Text = "Pole: 0, obwód: 0";
         }
         private void btnWybProstokat(object sender, EventArgs e)
         {
@@ -33,52 +34,88 @@
             entBokA.Placeholder = "bok A";
             entBokB.Placeholder = "bok B";
             typFigury = 1;
+            lblPole.Text = "Pole: 0, obwód: 0";
 
         }
         private void btnCalcClicked(object sender, EventArgs e)
         {
             double a = 0, b = 0, c = 0;
             bool czyLiczba = true;
+            double pole = 0, obwod = 0;
 
-
-            czyLiczba = czyLiczba && double.TryParse(entBokA.Text, out a);
-            czyLiczba = czyLiczba && double.TryParse(entBokB.Text, out b);
-            czyLiczba = czyLiczba && double.TryParse(entBokC.Text, out c);
-
-            if (!czyLiczba)
+            void obliczTrojkat()
             {
-                lblPole.Text = "długości boków musza być wartościami liczbowymi";
-                return;
+                czyLiczba = czyLiczba && double.TryParse(entBokA.Text, out a);
+                czyLiczba = czyLiczba && double.TryParse(entBokB.Text, out b);
+                czyLiczba = czyLiczba && double.TryParse(entBokC.Text, out c);
+
+                if (!czyLiczba)
+                {
+                    lblPole.Text = "długości boków musza być wartościami liczbowymi";
+                    return;
+                }
+                if (a <= 0 || b <= 0 || c <= 0)
+                {
+                    lblPole.Text = "długości boków musza być dodatnie";
+                    return;
+                }
+                if (!(a + b > c && a + c > b && b + c > a))
+                {
+                    lblPole.Text = "boki nei spełniają warunku istnienia trójkąta";
+                    return;
+                }
+                obwod = a + b + c;
+                double p = obwod / 2;
+                pole = Math.Sqrt(p * (p - a) * (p - b) * (p - c));
+                lblPole.Text = $"pole: {pole}, obwód: {obwod}";
+
+                if (a * a + b * b == c * c || a * a + c * c == b * b || b * b + c * c == a * a)
+                    lblPole.Text += "\nczy prostokątny: TAK";
+                else
+                    lblPole.Text += "\nczy prostokątny: NIE";
+
+                if (a == b || b == c || c == a)
+                    lblPole.Text += "\nczy równoramienny: TAK";
+                else
+                    lblPole.Text += "\nczy równoramienny: NIE";
+
+                if (a == b && b == c)
+                    lblPole.Text += "\nczy równoboczny: TAK";
+                else
+                    lblPole.Text += "\nczy równoboczny: NIE";
             }
-            if (a <= 0 || b <= 0 || c <= 0)
+            void obliczProstokat()
             {
-                lblPole.Text = "długości boków musza być dodatnie";
-                return;
+                czyLiczba = czyLiczba && double.TryParse(entBokA.Text, out a);
+                czyLiczba = czyLiczba && double.TryParse(entBokB.Text, out b);
+
+                if (!czyLiczba)
+                {
+                    lblPole.Text = "długości boków musza być wartościami liczbowymi";
+                    return;
+                }
+                if (a <= 0 || b <= 0)
+                {
+                    lblPole.Text = "długości boków musza być dodatnie";
+                    return;
+                }
+
+                obwod = 2 * (a + b);
+                pole = a * b;
+                lblPole.Text = $"pole: {pole}, obwód: {obwod}";
             }
-            if (!(a + b > c && a + c > b && b + c > a))
+
+
+            switch(typFigury)
             {
-                lblPole.Text = "boki nei spełniają warunku istnienia trójkąta";
-                return;
+                case 0: obliczTrojkat();
+                        break;
+                case 1: obliczProstokat();
+                    break;
+
+                
             }
-            double obwod = a + b + c;
-            double p = obwod / 2;
-            double pole = Math.Sqrt(p*(p-a)*(p-b)*(p-c));
-            lblPole.Text = $"pole: {pole}, obwód: {obwod}";
-
-            if (a * a + b * b == c * c || a * a + c * c == b * b || b * b + c * c == a * a)
-                lblProst.Text = "czy prostokątny: TAK";
-            else
-                lblProst.Text = "czy prostokątny: NIE";
-
-            if (a == b || b == c || c == a)
-                lblRownoram.Text = "czy równoramienny: TAK";
-            else
-                lblRownoram.Text = "czy równoramienny: NIE";
-
-            if (a == b && b == c)
-                lblRownBok.Text = "czy równoboczny: TAK";
-            else
-                lblRownBok.Text = "czy równoboczny: NIE";
+            
         }
     }
 

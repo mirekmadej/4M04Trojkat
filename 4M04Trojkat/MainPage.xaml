@@ -50,18 +50,7 @@
                 Text="Pole: 0, obwód: o"
                 x:Name="lblPole"
                 />
-            <Label
-                Text="czy prostokątny: "
-                x:Name="lblProst"
-                />
-            <Label
-                Text="czy równoramienny: "
-                x:Name="lblRownoram"
-                />
-            <Label
-                Text="czy równoboczny: "
-                x:Name="lblRownBok"
-                />
+
 
 
         </VerticalStackLayout>
