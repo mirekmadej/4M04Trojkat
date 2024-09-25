@@ -7,11 +7,28 @@
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                <Button
+                    Text="Trójkąt"
+                    Clicked="btnWybTrojkat"
+                    />
+                <Button
+                    Text="Kwadrat"
+                    />
+                <Button
+                    Text="Prostokąt"
+                    Clicked="btnWybProstokat"
+                    />
+                <Button
+                    Text="Koło"
+                    />
+            </HorizontalStackLayout>
 
             <Label
                 Text ="Trójkąt"
                 FontSize="40"
                 HorizontalOptions="Center"
+                x:Name="lblNazwa"
                 />
             <Entry
                 Placeholder="bok A"

@@ -2,17 +2,44 @@
 {
     public partial class MainPage : ContentPage
     {
-        
+        int typFigury = 0;
+            // 0 - trójkąt
+            // 1 - prostokąt
+            // 2 - kwadrtat
+            // 3 - koło
 
         public MainPage()
         {
             InitializeComponent();
         }
 
+        private void btnWybTrojkat(object sender, EventArgs e)
+        {
+            lblNazwa.Text = "Trójkąt";
+            entBokA.IsVisible = true;
+            entBokB.IsVisible = true;
+            entBokC.IsVisible = true;
+            entBokA.Placeholder = "bok A";
+            entBokB.Placeholder = "bok B";
+            entBokC.Placeholder = "bok C";
+            typFigury = 0;
+        }
+        private void btnWybProstokat(object sender, EventArgs e)
+        {
+            lblNazwa.Text = "Prostokąt";
+            entBokA.IsVisible = true;
+            entBokB.IsVisible = true;
+            entBokC.IsVisible = false;
+            entBokA.Placeholder = "bok A";
+            entBokB.Placeholder = "bok B";
+            typFigury = 1;
+
+        }
         private void btnCalcClicked(object sender, EventArgs e)
         {
             double a = 0, b = 0, c = 0;
             bool czyLiczba = true;
+
 
             czyLiczba = czyLiczba && double.TryParse(entBokA.Text, out a);
             czyLiczba = czyLiczba && double.TryParse(entBokB.Text, out b);
